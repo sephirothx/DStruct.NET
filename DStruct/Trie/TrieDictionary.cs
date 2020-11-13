@@ -181,7 +181,7 @@ namespace DStruct.Trie
             }
         }
 
-        /// <summary>Gets the key/value pairs stored in the <see cref="Trie"/> that are associated to keys that begin with the chosen prefix. <code>Complexity: O(N*L)</code></summary>
+        /// <summary>Gets the key/value pairs stored in the <see cref="TrieDictionary{T}"/> that are associated to keys that begin with the chosen prefix. <code>Complexity: O(N*L)</code></summary>
         /// <param name="prefix">The prefix of the keys to retrieve.</param>
         /// <returns><see cref="Array"/> containing all the key/value pairs associated to keys that begin with <paramref name="prefix"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="prefix"/> is <c>null</c>.</exception>
