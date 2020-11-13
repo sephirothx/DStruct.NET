@@ -24,7 +24,7 @@ Represents a node-based, self-balancing **IBinarySearchTree<T>**.
 
 `T Max` Gets the maximum value element stored in the **AVLTree<T>**. Complexity: O(LogN)
 
-`T this[int index]` Gets the element at the specified index. Complexity: avg O(LogN), worst O(N)
+`T this[int index]` Gets the element at the specified index. Complexity: O(LogN)
 
 <br>
 
