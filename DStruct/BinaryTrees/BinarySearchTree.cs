@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DStruct.BinaryTrees
 {
-    /// <summary>Represents a node-based <see cref="IBinarySearchTree{T}" /> which isn't self-balancing.</summary>
+    /// <summary>Represents a node-based, non self-balancing <see cref="IBinarySearchTree{T}" /> enhanced to implement an efficient indexer.</summary>
     /// <typeparam name="T">The type of the values stored in the <see cref="BinarySearchTree{T}"/>. It must implement the <see cref="IComparable{T}"/> interface.</typeparam>
     public class BinarySearchTree<T> : IBinarySearchTree<T>
         where T : IComparable<T>, IComparable
