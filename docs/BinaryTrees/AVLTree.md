@@ -2,7 +2,7 @@
 
 Implements: [`IBinarySearchTree<T>`](IBinarySearchTree.md)
 
-Represents a node-based, self-balancing **IBinarySearchTree<T>**.
+Represents a node-based, self-balancing **IBinarySearchTree<T>** enhanced to implement an efficient indexer.
 
 <br>
 
