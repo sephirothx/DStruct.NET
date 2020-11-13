@@ -4,15 +4,21 @@ Implements: `ICollection<string>` `IReadOnlyCollection<string>`
 
 Represents a collection of strings that is very efficient at retrieving all the stored words with a common prefix.
 
+<br>
+
 ## Constructors
 
 `Trie()` Initializes a new instance of **Trie** that is empty.
 
 `Trie(IEnumerable<string> collection)` Initializes a new instance of **Trie** that contains every item from the input collection.
 
+<br>
+
 ## Properties
 
 `int Count` Gets the number of elements contained in the **Trie**. Complexity: O(1)
+
+<br>
 
 ## Methods
 
