@@ -12,7 +12,7 @@ Represents a node-based **IBinarySearchTree<T>** which isn't self-balancing.
 
 `BinarySearchTree(IEnumerable<T> collection)` Initializes a new instance of **BinarySearchTree<T>** that contains every item from the input collection.
 
-`BinarySearchTree(IComparer<T> comparer)` Initializes a new instance of **BinarySearchTree<T>** that is empty and uses the specified <see cref="IComparer{T}"/>.
+`BinarySearchTree(IComparer<T> comparer)` Initializes a new instance of **BinarySearchTree<T>** that is empty and uses the specified **IComparer<T>**.
 
 <br>
 
