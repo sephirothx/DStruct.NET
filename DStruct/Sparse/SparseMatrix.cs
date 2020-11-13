@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DStruct.Sparse
 {
-    struct Coordinate
+    readonly struct Coordinate
     {
         public readonly int X;
         public readonly int Y;
