@@ -1,45 +1,57 @@
 # DStruct.NET
 
-### DefaultDictionary
+### [DefaultDictionary](docs/DefaultDictionary.md)
+
+<br>
 
 ## Binary Trees
 
-### IBinarySearchTree
+### [IBinarySearchTree](docs/BinaryTrees/IBinarySearchTree.md)
 
-### BinarySearchTree
+### [BinarySearchTree](docs/BinaryTrees/BinarySearchTree.md)
 
-### AVLTree
+### [AVLTree](docs/BinaryTrees/AVLTree.md)
 
-### RedBlackTree
+### [RedBlackTree](docs/BinaryTrees/RedBlackTree.md)
+
+<br>
 
 ## Heaps
 
-### BinaryHeap
+### [BinaryHeap](docs/Heaps/BinaryHeap.md)
 
-### MaxHeap
+### [MaxHeap](docs/Heaps/MaxHeap.md)
 
-### MinHeap
+### [MinHeap](docs/Heaps/MinHeap.md)
+
+<br>
 
 ## Queues
 
-### Deque
+### [Deque](docs/Queues/Deque.md)
 
-### PriorityQueue
+### [PriorityQueue](docs/Queues/PriorityQueue.md)
+
+<br>
 
 ## Trie
 
-### Trie
+### [Trie](docs/Trie/Trie.md)
 
-### TrieDictionary
+### [TrieDictionary](docs/Trie/TrieDictionary.md)
+
+<br>
 
 ## Probabilistic
 
-### CountMinSketch
+### [CountMinSketch](docs/Probabilistic/CountMinSketch.md)
 
-### BloomFilter
+### [BloomFilter](docs/Probabilistic/BloomFilter.md)
+
+<br>
 
 ## Sparse
 
-### SparseArray
+### [SparseArray](docs/Sparse/SparseArray.md)
 
-### SparseMatrix
+### [SparseMatrix](docs/Sparse/SparseMatrix.md)
