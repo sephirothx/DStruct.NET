@@ -11,6 +11,9 @@ All the data structures implemented in the library are listed below, divided by 
 
 ## Binary Trees
 
+Different implementations of binary search trees, enhanced to offer an efficient way to access the N-th element through an indexer.
+
+
 - ### [IBinarySearchTree](docs/BinaryTrees/IBinarySearchTree.md)
 
 - ### [BinarySearchTree](docs/BinaryTrees/BinarySearchTree.md)
