@@ -1,45 +1,65 @@
 # DStruct.NET
 
-### DefaultDictionary
+**DStruct** is a library I implemented around the end of 2018, when I first approached C# and felt like it was lacking some important data structures that other languages like Python and C++ offer in their standard libraries.
+
+All the data structures implemented in the library are listed below, divided by category.
+
+
+- ### [DefaultDictionary](docs/DefaultDictionary.md)
+
+<br>
 
 ## Binary Trees
 
-### IBinarySearchTree
+Different implementations of binary search trees, enhanced to offer an efficient way to access the N-th element through an indexer.
 
-### BinarySearchTree
 
-### AVLTree
+- ### [IBinarySearchTree](docs/BinaryTrees/IBinarySearchTree.md)
 
-### RedBlackTree
+- ### [BinarySearchTree](docs/BinaryTrees/BinarySearchTree.md)
+
+- ### [AVLTree](docs/BinaryTrees/AVLTree.md)
+
+- ### [RedBlackTree](docs/BinaryTrees/RedBlackTree.md)
+
+<br>
 
 ## Heaps
 
-### BinaryHeap
+- ### [BinaryHeap](docs/Heaps/BinaryHeap.md)
 
-### MaxHeap
+- ### [MaxHeap](docs/Heaps/MaxHeap.md)
 
-### MinHeap
+- ### [MinHeap](docs/Heaps/MinHeap.md)
+
+<br>
 
 ## Queues
 
-### Deque
+- ### [Deque](docs/Queues/Deque.md)
 
-### PriorityQueue
+- ### [PriorityQueue](docs/Queues/PriorityQueue.md)
+
+<br>
 
 ## Trie
 
-### Trie
+- ### [Trie](docs/Trie/Trie.md)
 
-### TrieDictionary
+- ### [TrieDictionary](docs/Trie/TrieDictionary.md)
+
+<br>
 
 ## Probabilistic
 
-### CountMinSketch
+- ### [CountMinSketch](docs/Probabilistic/CountMinSketch.md)
 
-### BloomFilter
+- ### [BloomFilter](docs/Probabilistic/BloomFilter.md)
+
+<br>
 
 ## Sparse
 
-### SparseArray
+- ### [SparseArray](docs/Sparse/SparseArray.md)
 
-### SparseMatrix
+- ### [SparseMatrix](docs/Sparse/SparseMatrix.md)
