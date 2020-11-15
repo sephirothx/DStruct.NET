@@ -6,6 +6,14 @@
 
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Product>DStruct.NET</Product>
+    <PackageId>StefanoProsperi.DStruct.NET</PackageId>
+    <Authors>Stefano Prosperi</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/sephirothx/DStruct.NET</RepositoryUrl>
+    <PackageTags>datastructures, data-structures, data structures, defaultdictionary, default-dictionary, default dictionary, binarytree, binary-tree, binary tree, bst, heap, minheap, min-heap, min heap, maxheap, max-heap, max heap, countminsketch, count-min-sketch, count min sketch, bloomfilter, bloom-filter, bloom filter, deque, priorityqueue, priority-queue, priority queue, trie</PackageTags>
+    <Description>Advanced data structures for C#</Description>
+    <Copyright>Copyright (c) 2020 Stefano Prosperi</Copyright>
   </PropertyGroup>
 
 </Project>
