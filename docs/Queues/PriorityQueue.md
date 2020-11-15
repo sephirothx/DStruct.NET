@@ -1,7 +1,5 @@
 # PriorityQueue
 
-Implements: `IEnumerable<T>`
-
 Represents a Queue in which the elements are ordered using a specified priority.
 
 <br>
