@@ -121,22 +121,5 @@ namespace DStruct.Queues
         {
             return _heap.Peek();
         }
-
-        /// <summary>Returns an enumerator that iterates through the <see cref="PriorityQueue{T}"/>.</summary>
-        /// <returns>An enumerator that can be used to iterate through the <see cref="PriorityQueue{T}"/>.</returns>
-        public IEnumerator<T> GetEnumerator()
-        {
-            while (!_heap.IsEmpty)
-            {
-                yield return _heap.Pop().Value;
-            }
-        }
-
-        /// <summary>Returns an enumerator that iterates through the <see cref="PriorityQueue{T}"/>.</summary>
-        /// <returns>An <see cref="IEnumerator"/> object that can be used to iterate through the <see cref="PriorityQueue{T}"/>.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
     }
 }
