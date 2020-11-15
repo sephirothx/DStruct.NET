@@ -42,7 +42,7 @@ namespace DStruct.Queues
 
     /// <summary>Represents a Queue in which the elements are ordered using a specified priority.</summary>
     /// <typeparam name="T">The type of the elements in the <see cref="PriorityQueue{T}"/>.</typeparam>
-    public class PriorityQueue<T> : IEnumerable<T>
+    public class PriorityQueue<T>
     {
         private readonly BinaryHeap<PriorityQueueNode<T>> _heap;
 
