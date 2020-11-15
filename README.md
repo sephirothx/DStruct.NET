@@ -1,5 +1,7 @@
 # DStruct.NET
 
+[![NuGet Version (DStruct.NET)](https://img.shields.io/nuget/v/DStruct.NET.svg?style=flat-square)](https://www.nuget.org/packages/DStruct.NET/)
+
 **DStruct** is a library I implemented around the end of 2018, when I first approached C# and felt like it was lacking some important data structures that other languages like Python and C++ offer in their standard libraries.
 
 All the data structures implemented in the library are listed below, divided by category.
