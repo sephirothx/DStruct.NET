@@ -4,6 +4,9 @@
 
 All the data structures implemented in the library are listed below, divided by category.
 
+<br>
+
+## General
 
 - ### [DefaultDictionary](docs/DefaultDictionary.md)
 
