@@ -28,8 +28,6 @@ Represents a collection of strings that is very efficient at retrieving all the 
 
 `void AddAll(IEnumerable<string> collection)` Adds the elements of the specified collection to the **Trie**. Complexity: O(N*L)
 
-`async Task AddAllAsync(IEnumerable<string> collection)` Adds the elements of the specified collection to the **Trie**, async. Complexity: O(N*L)
-
 `void CopyTo(string[] array, int arrayIndex)` Copies the elements of the **Trie** to an **Array**, starting at a particular **Array** index. Complexity: O(N*L)
 
 `bool Remove(string value)` Removes a specific element from the **Trie**. Complexity: O(L)

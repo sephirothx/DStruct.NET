@@ -68,19 +68,6 @@ namespace DStruct.Trie
             }
         }
 
-        /// <summary>Adds the elements of the specified collection to the <see cref="Trie"/>, async. <code>Complexity: O(N*L)</code></summary>
-        /// <param name="collection">The collection of elements to the <see cref="Trie"/>.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <c>null</c>.</exception>
-        public async Task AddAllAsync(IEnumerable<string> collection)
-        {
-            if (collection == null)
-            {
-                throw new ArgumentNullException(nameof(collection));
-            }
-
-            await Task.Run(() => AddAll(collection));
-        }
-
         /// <summary>Copies the elements of the <see cref="Trie"/> to an <see cref="Array"/>, starting at a particular <see cref="Array"/> index. <code>Complexity: O(N*L)</code></summary>
         /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from <see cref="Trie"/>.</param>
         /// <param name="arrayIndex">The zero-based index in <paramref name="array"/> at which copying begins.</param>

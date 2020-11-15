@@ -34,8 +34,6 @@ Represents a dictionary in which the key/value coupling is implemented via a Tri
 
 `void AddAll(IEnumerable<KeyValuePair<string, T>> collection)` Adds a collection of key/value pairs to the **TrieDictionary<T>**. Complexity: O(N*L)
 
-`async Task AddAllAsync(IEnumerable<KeyValuePair<string, T>> collection)` Adds a collection of key/value pairs to the **TrieDictionary<T>**, async. Complexity: O(N*L)
-
 `void Clear()` Removes all elements from the **TrieDictionary<T>**.
 
 `bool Contains(KeyValuePair<string, T> item)` Determines whether the **TrieDictionary<T>** contains a specific key/value pair. Complexity: O(L)

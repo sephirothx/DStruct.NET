@@ -71,19 +71,6 @@ namespace DStruct.Trie
             }
         }
 
-        /// <summary>Adds a collection of key/value pairs to the <see cref="TrieDictionary{T}"/>, async. <code>Complexity: O(N*L)</code></summary>
-        /// <param name="collection">The collection of key/value pairs to add to the <see cref="TrieDictionary{T}"/>.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <c>null</c>.</exception>
-        public async Task AddAllAsync(IEnumerable<KeyValuePair<string, T>> collection)
-        {
-            if (collection == null)
-            {
-                throw new ArgumentNullException(nameof(collection));
-            }
-
-            await Task.Run(() => AddAll(collection));
-        }
-
         /// <summary>Removes all elements from the <see cref="TrieDictionary{T}"/>.</summary>
         public void Clear()
         {
