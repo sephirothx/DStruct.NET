@@ -7,11 +7,11 @@ namespace DStruct.Heaps
 {
     /// <summary>Represents a tree in which the value of each node is greater (<see cref="MaxHeap{T}"/>)
     /// or smaller (<see cref="MinHeap{T}"/>) than the value of all its children.</summary>
-    /// <typeparam name="T">The type of the values stored in the tree. It must implement the <see cref="IComparable{T}"/> interface.</typeparam>
-    public abstract class BinaryHeap<T> where T : IComparable<T>
+    /// <typeparam name="T">The type of the values stored in the heap.</typeparam>
+    public abstract class BinaryHeap<T>
     {
         protected readonly IList<T>     _heap = new List<T>();
-        protected readonly IComparer<T> _comparer;
+        protected readonly IComparer<T> _comparer = Comparer<T>.Default;
 
         /// <summary>Gets the number of elements contained in the <see cref="BinaryHeap{T}"/>.</summary>
         public int Count => _heap.Count;
@@ -91,7 +91,7 @@ namespace DStruct.Heaps
 
         protected int Compare(T x, T y)
         {
-            return _comparer?.Compare(x, y) ?? x.CompareTo(y);
+            return _comparer.Compare(x, y);
         }
 
         protected void Swap(int i1, int i2)

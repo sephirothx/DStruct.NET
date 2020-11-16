@@ -3,9 +3,8 @@
 namespace DStruct.BinaryTrees
 {
     /// <summary>Represents a Binary Tree in which the elements are sorted in order so that operations can use the principle of Binary Search.</summary>
-    /// <typeparam name="T">The type of the values stored in the tree. It must implement the <see cref="IComparable{T}"/> interface.</typeparam>
+    /// <typeparam name="T">The type of the values stored in the tree.</typeparam>
     public interface IBinarySearchTree<T>
-        where T : IComparable<T>
     {
         /// <summary>Gets the number of elements stored in the <see cref="IBinarySearchTree{T}"/>.</summary>
         int Count { get; }
