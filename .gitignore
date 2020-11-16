@@ -2,3 +2,5 @@
 [Oo]bj/
 
 .vs/
+
+*.DotSettings.user
