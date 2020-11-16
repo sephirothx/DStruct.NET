@@ -134,9 +134,8 @@ namespace DStruct.BinaryTrees
             RedBlackTreeNode<T> parent = null;
             RedBlackTreeNode<T> child  = null;
 
-            bool rotate = false;
-
-            int position = 0;
+            bool adjust   = false;
+            int  position = 0;
 
             void InsertHelper(ref RedBlackTreeNode<T> node)
             {
@@ -168,15 +167,30 @@ namespace DStruct.BinaryTrees
                     InsertHelper(ref node.Right);
                 }
 
-                if (rotate)
+                if (adjust)
                 {
-                    node   = node.PerformRotation();
-                    rotate = false;
+                    if (node.HasTwoRedChildren)
+                    {
+                        node.RecolorNodeAndChildren();
+                    }
+                    else
+                    {
+                        node = node.PerformRotation();
+                    }
+
+                    adjust = false;
                 }
 
                 if (node.IsRed && child.IsRed)
                 {
-                    rotate = true;
+                    if (node.Parent.HasTwoRedChildren)
+                    {
+                        node.Parent.RecolorNodeAndChildren();
+                    }
+                    else
+                    {
+                        adjust = true;
+                    }
                 }
 
                 child = node;
@@ -219,7 +233,54 @@ namespace DStruct.BinaryTrees
         /// <returns><c>true</c> if the element was successfully removed from the <see cref="RedBlackTree{T}"/>; <c>false</c> otherwise.</returns>
         public bool Remove(T value)
         {
-            return false;
+            bool ret = false;
+
+            void RemoveHelper(RedBlackTreeNode<T> node)
+            {
+                if (node == null)
+                {
+                    ret = false;
+                    return;
+                }
+
+                int  comparison  = Compare(value, node.Value);
+                bool decremented = false;
+
+                if (comparison < 0)
+                {
+                    node.LeftChildren--;
+                    decremented = true;
+                    RemoveHelper(node.Left);
+                }
+                else if (comparison > 0)
+                {
+                    RemoveHelper(node.Right);
+                }
+                else
+                {
+                    ret = true;
+
+                    if (node.Left  == null ||
+                        node.Right == null)
+                    {
+                        node.Delete(ref _root);
+                        return;
+                    }
+
+                    node.Value = RedBlackTreeNode<T>.RemoveInOrderSuccessor(node.Right, ref _root);
+                }
+
+                if (!ret && decremented)
+                {
+                    node.LeftChildren++;
+                }
+            }
+
+            RemoveHelper(_root);
+            _root?.ColorBlack();
+
+            if (ret) Count--;
+            return ret;
         }
 
         /// <summary>Returns the list of the elements stored in the <see cref="RedBlackTree{T}" /> in-order. <code>Complexity: O(N)</code></summary>

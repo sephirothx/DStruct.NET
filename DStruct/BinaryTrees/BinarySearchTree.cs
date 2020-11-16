@@ -130,27 +130,25 @@ namespace DStruct.BinaryTrees
         public int Insert(T value)
         {
             int position = 0;
+            
+            ref var curr = ref _root;
 
-            void InsertHelper(ref BSTNode<T> node)
+            while (curr != null)
             {
-                if (node == null)
+                if (Compare(value, curr.Value) < 0)
                 {
-                    node = new BSTNode<T>(value);
-                    Count++;
-                }
-                else if (Compare(value, node.Value) < 0)
-                {
-                    node.LeftChildren++;
-                    InsertHelper(ref node.Left);
+                    curr.LeftChildren++;
+                    curr = ref curr.Left;
                 }
                 else
                 {
-                    position += node.LeftChildren + 1;
-                    InsertHelper(ref node.Right);
+                    position += curr.LeftChildren + 1;
+                    curr = ref curr.Right;
                 }
             }
 
-            InsertHelper(ref _root);
+            curr = new BSTNode<T>(value);
+            Count++;
 
             return position;
         }
@@ -186,19 +184,24 @@ namespace DStruct.BinaryTrees
         /// <returns><c>true</c> if the element was successfully removed from the <see cref="BinarySearchTree{T}"/>; <c>false</c> otherwise.</returns>
         public bool Remove(T value)
         {
-            if (!Find(value))
-            {
-                return false;
-            }
+            bool ret = true;
 
             BSTNode<T> RemoveHelper(BSTNode<T> node)
             {
-                int comparison = Compare(value, node.Value);
+                if (node == null)
+                {
+                    ret = false;
+                    return null;
+                }
+
+                int  comparison  = Compare(value, node.Value);
+                bool decremented = false;
 
                 if (comparison < 0)
                 {
                     node.LeftChildren--;
-                    node.Left = RemoveHelper(node.Left);
+                    decremented = true;
+                    node.Left   = RemoveHelper(node.Left);
                 }
                 else if (comparison > 0)
                 {
@@ -219,12 +222,18 @@ namespace DStruct.BinaryTrees
                     node.Value = BSTNode<T>.RemoveInOrderSuccessor(ref node.Right);
                 }
 
+                if (!ret && decremented)
+                {
+                    node.LeftChildren++;
+                }
+
                 return node;
             }
 
             _root = RemoveHelper(_root);
-            Count--;
-            return true;
+
+            if (ret) Count--;
+            return ret;
         }
 
         /// <summary>Returns the list of the elements stored in the <see cref="BinarySearchTree{T}" /> in-order. <code>Complexity: O(N)</code></summary>
