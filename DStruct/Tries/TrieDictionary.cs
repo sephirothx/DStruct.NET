@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace DStruct.Trie
+namespace DStruct.Tries
 {
     /// <summary>Represents a dictionary in which the key/value coupling is implemented via a Trie.</summary>
     /// <typeparam name="T">The type of values stored in the <see cref="TrieDictionary{T}"/>. It must implement the <see cref="IEquatable{T}"/> interface.</typeparam>

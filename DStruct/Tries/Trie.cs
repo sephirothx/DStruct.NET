@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace DStruct.Trie
+namespace DStruct.Tries
 {
     /// <summary>Represents a collection of strings that is very efficient at retrieving all the stored words with a common prefix.</summary>
     public class Trie : ICollection<string>, IReadOnlyCollection<string>
