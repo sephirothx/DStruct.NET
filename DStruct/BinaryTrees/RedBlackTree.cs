@@ -280,7 +280,7 @@ namespace DStruct.BinaryTrees
             _root?.ColorBlack();
 
             if (ret) Count--;
-            return ret;
+            return !ret;
         }
 
         /// <summary>Returns the list of the elements stored in the <see cref="RedBlackTree{T}" /> in-order. <code>Complexity: O(N)</code></summary>
