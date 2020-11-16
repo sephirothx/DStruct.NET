@@ -1,7 +1,7 @@
 using DStruct.BinaryTrees;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Tests.BinaryTrees
 {
     [TestClass]
     public class BinarySearchTreeTests
