@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DStruct.Trie
+namespace DStruct.Tries
 {
     class TrieNode
     {
