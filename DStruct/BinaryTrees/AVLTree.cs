@@ -190,19 +190,24 @@ namespace DStruct.BinaryTrees
         /// <returns><c>true</c> if the element was successfully removed from the <see cref="AVLTree{T}"/>; <c>false</c> otherwise.</returns>
         public bool Remove(T value)
         {
-            if (!Find(value))
-            {
-                return false;
-            }
+            bool ret = true;
 
             AVLTreeNode<T> RemoveHelper(AVLTreeNode<T> node)
             {
-                int comparison = Compare(value, node.Value);
+                if (node == null)
+                {
+                    ret = false;
+                    return null;
+                }
+
+                int  comparison  = Compare(value, node.Value);
+                bool decremented = false;
 
                 if (comparison < 0)
                 {
                     node.LeftChildren--;
-                    node.Left = RemoveHelper(node.Left);
+                    decremented = true;
+                    node.Left   = RemoveHelper(node.Left);
                 }
                 else if (comparison > 0)
                 {
@@ -223,15 +228,23 @@ namespace DStruct.BinaryTrees
                     node.Value = AVLTreeNode<T>.RemoveInOrderSuccessor(ref node.Right);
                 }
 
-                node.UpdateHeight();
-                node = node.PerformRotations();
+                if (ret)
+                {
+                    node.UpdateHeight();
+                    node = node.PerformRotations();
+                }
+                else if (decremented)
+                {
+                    node.LeftChildren++;
+                }
 
                 return node;
             }
 
             _root = RemoveHelper(_root);
-            Count--;
-            return true;
+
+            if (ret) Count--;
+            return ret;
         }
 
         /// <summary>Returns the list of the elements stored in the <see cref="AVLTree{T}" /> in-order. <code>Complexity: O(N)</code></summary>
