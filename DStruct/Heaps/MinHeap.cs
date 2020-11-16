@@ -4,9 +4,8 @@ using System.Collections.Generic;
 namespace DStruct.Heaps
 {
     /// <summary>Represents a <see cref="BinaryHeap{T}"/> in which the value of each node is smaller than the value of all its children.</summary>
-    /// <typeparam name="T">The type of the values stored in the tree. It must implement the <see cref="IComparable{T}"/> interface.</typeparam>
-    public class MinHeap<T> : BinaryHeap<T> 
-        where T : IComparable<T>
+    /// <typeparam name="T">The type of the values stored in the heap.</typeparam>
+    public class MinHeap<T> : BinaryHeap<T>
     {
         /// <summary>Initializes a new instance of <see cref="MinHeap{T}"/> that is empty and has the default initial capacity.</summary>
         public MinHeap() {}

@@ -6,10 +6,10 @@ using System.Collections.Generic;
 namespace DStruct.BinaryTrees
 {
     /// <summary>Represents a node-based, self-balancing <see cref="IBinarySearchTree{T}"/> enhanced to implement an efficient indexer.</summary>
-    /// <typeparam name="T">The type of the values stored in the <see cref="AVLTree{T}"/>. It must implement the <see cref="IComparable{T}"/> interface.</typeparam>
-    public class AVLTree<T> : IBinarySearchTree<T> where T : IComparable<T>
+    /// <typeparam name="T">The type of the values stored in the <see cref="AVLTree{T}"/>.</typeparam>
+    public class AVLTree<T> : IBinarySearchTree<T>
     {
-        private readonly IComparer<T> _comparer;
+        private readonly IComparer<T> _comparer = Comparer<T>.Default;
 
         private AVLTreeNode<T> _root;
 
@@ -321,7 +321,7 @@ namespace DStruct.BinaryTrees
 
         private int Compare(T x, T y)
         {
-            return _comparer?.Compare(x, y) ?? x.CompareTo(y);
+            return _comparer.Compare(x, y);
         }
     }
 }
