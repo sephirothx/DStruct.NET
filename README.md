@@ -1,7 +1,7 @@
 # DStruct.NET
 
 [![Build](https://github.com/sephirothx/DStruct.NET/workflows/.NET%20Core/badge.svg)](https://github.com/sephirothx/DStruct.NET/actions?query=workflow%3A%22.NET+Core%22)
-[![NuGet Version (DStruct.NET)](https://img.shields.io/nuget/v/DStruct.NET.svg?style=flat-square)](https://www.nuget.org/packages/DStruct.NET/)
+[![NuGet Version (DStruct.NET)](https://img.shields.io/nuget/v/DStruct.NET.svg?logo=nuget)](https://www.nuget.org/packages/DStruct.NET/)
 
 **DStruct** is a library I implemented around the end of 2018, when I first approached C# and felt like it was lacking some important data structures that other languages like Python and C++ offer in their standard libraries.
 
