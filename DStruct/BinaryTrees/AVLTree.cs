@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DStruct.Queues;
+using System;
 using System.Collections.Generic;
 
 // ReSharper disable RedundantAssignment
@@ -7,18 +8,11 @@ namespace DStruct.BinaryTrees
 {
     /// <summary>Represents a node-based, self-balancing <see cref="IBinarySearchTree{T}"/> enhanced to implement an efficient indexer.</summary>
     /// <typeparam name="T">The type of the values stored in the <see cref="AVLTree{T}"/>.</typeparam>
-    public class AVLTree<T> : IBinarySearchTree<T>
+    public class AVLTree<T> : BinarySearchTreeBase<AVLTreeNode<T>, T>
     {
-        private readonly IComparer<T> _comparer = Comparer<T>.Default;
-
-        private AVLTreeNode<T> _root;
-
-        /// <summary>Gets the number of elements stored in the <see cref="AVLTree{T}" />. <code>Complexity: O(1)</code></summary>
-        public int Count { get; private set; }
-
         /// <summary>Gets the minimum value element stored in the <see cref="AVLTree{T}"/>. <code>Complexity: O(LogN)</code></summary>
         /// <exception cref="InvalidOperationException"><see cref="AVLTree{T}"/> is empty.</exception>
-        public T Min
+        public override T Min
         {
             get
             {
@@ -39,7 +33,7 @@ namespace DStruct.BinaryTrees
 
         /// <summary>Gets the maximum value element stored in the <see cref="AVLTree{T}" />. <code>Complexity: O(LogN)</code></summary>
         /// <exception cref="InvalidOperationException"><see cref="AVLTree{T}"/> is empty.</exception>
-        public T Max
+        public override T Max
         {
             get
             {
@@ -62,7 +56,7 @@ namespace DStruct.BinaryTrees
         /// <param name="index">The index of the element to get from the <see cref="AVLTree{T}"/>.</param>
         /// <returns>The element at the specified index.</returns>
         /// <exception cref="IndexOutOfRangeException"><paramref name="index"/> is out of the bounds of the <see cref="AVLTree{T}"/>.</exception>
-        public T this[int index]
+        public override T this[int index]
         {
             get
             {
@@ -103,30 +97,22 @@ namespace DStruct.BinaryTrees
         /// <param name="collection">The collection of elements to add to the <see cref="AVLTree{T}"/>.</param>
         /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <c>null</c>.</exception>
         public AVLTree(IEnumerable<T> collection)
+            : base(collection)
         {
-            if (collection == null)
-            {
-                throw new ArgumentNullException(nameof(collection));
-            }
-
-            foreach (var value in collection)
-            {
-                Insert(value);
-            }
         }
 
         /// <summary>Initializes a new instance of <see cref="AVLTree{T}"/> that is empty and uses the specified <see cref="IComparer{T}"/>.</summary>
         /// <param name="comparer">The <see cref="IComparer{T}"/> that will be used for making comparisons.</param>
         /// <exception cref="ArgumentNullException"><paramref name="comparer"/> is <c>null</c>.</exception>
         public AVLTree(IComparer<T> comparer)
+            : base(comparer)
         {
-            _comparer = comparer ?? throw new ArgumentNullException(nameof(comparer));
         }
 
         /// <summary>Inserts an element into the <see cref="AVLTree{T}" /> and returns its index. <code>Complexity: O(LogN)</code></summary>
         /// <param name="value">The element to add to the <see cref="AVLTree{T}"/>.</param>
         /// <returns>The index at which the element was placed.</returns>
-        public int Insert(T value)
+        public override int Insert(T value)
         {
             int position = 0;
 
@@ -162,7 +148,7 @@ namespace DStruct.BinaryTrees
         /// <summary>Determines whether the <see cref="AVLTree{T}" /> contains a specific value. <code>Complexity: O(LogN)</code></summary>
         /// <param name="value">The element to locate in the <see cref="AVLTree{T}"/>.</param>
         /// <returns><c>true</c> if the <see cref="AVLTree{T}"/> contains <paramref name="value"/>; <c>false</c> otherwise.</returns>
-        public bool Find(T value)
+        public override bool Find(T value)
         {
             if (_root == null)
             {
@@ -188,7 +174,7 @@ namespace DStruct.BinaryTrees
         /// <summary>Removes one occurrence of a specific element from the <see cref="AVLTree{T}" />. <code>Complexity: O(LogN)</code></summary>
         /// <param name="value">The element to remove from the <see cref="AVLTree{T}"/>.</param>
         /// <returns><c>true</c> if the element was successfully removed from the <see cref="AVLTree{T}"/>; <c>false</c> otherwise.</returns>
-        public bool Remove(T value)
+        public override bool Remove(T value)
         {
             bool ret = true;
 
@@ -245,83 +231,6 @@ namespace DStruct.BinaryTrees
 
             if (ret) Count--;
             return ret;
-        }
-
-        /// <summary>Returns the list of the elements stored in the <see cref="AVLTree{T}" /> in-order. <code>Complexity: O(N)</code></summary>
-        /// <returns>List of in-order elements.</returns>
-        public T[] InOrderTraverse()
-        {
-            var output = new T[Count];
-            int i      = 0;
-
-            void IOTHelper(AVLTreeNode<T> node)
-            {
-                if (node == null)
-                {
-                    return;
-                }
-
-                IOTHelper(node.Left);
-                output[i++] = node.Value;
-                IOTHelper(node.Right);
-            }
-
-            IOTHelper(_root);
-
-            return output;
-        }
-
-        /// <summary>Returns the list of the elements stored in the <see cref="AVLTree{T}" /> pre-order. <code>Complexity: O(N)</code></summary>
-        /// <returns>List of pre-order elements.</returns>
-        public T[] PreOrderTraverse()
-        {
-            var output = new T[Count];
-            int i      = 0;
-
-            void POTHelper(AVLTreeNode<T> node)
-            {
-                if (node == null)
-                {
-                    return;
-                }
-
-                output[i++] = node.Value;
-                POTHelper(node.Left);
-                POTHelper(node.Right);
-            }
-
-            POTHelper(_root);
-
-            return output;
-        }
-
-        /// <summary>Returns the list of the elements stored in the <see cref="AVLTree{T}" /> post-order. <code>Complexity: O(N)</code></summary>
-        /// <returns>List of post-order elements.</returns>
-        public T[] PostOrderTraverse()
-        {
-            var output = new T[Count];
-            int i      = 0;
-
-            void POTHelper(AVLTreeNode<T> node)
-            {
-                if (node == null)
-                {
-                    return;
-                }
-
-                POTHelper(node.Left);
-                POTHelper(node.Right);
-                output[i++] = node.Value;
-            }
-
-            POTHelper(_root);
-
-            return output;
-        }
-
-        private int Compare(T x, T y)
-        {
-            return _comparer.Compare(x, y);
         }
     }
 }

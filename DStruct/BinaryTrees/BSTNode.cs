@@ -1,12 +1,15 @@
 ﻿namespace DStruct.BinaryTrees
 {
-    class BSTNode<T>
+    public class BSTNode<T> : IBinarySearchTreeNodeBase<T>
     {
         public BSTNode<T> Left;
         public BSTNode<T> Right;
 
         public T Value { get; set; }
         public int LeftChildren { get; set; }
+
+        IBinarySearchTreeNodeBase<T> IBinarySearchTreeNodeBase<T>.Left => Left;
+        IBinarySearchTreeNodeBase<T> IBinarySearchTreeNodeBase<T>.Right => Right;
 
         public BSTNode()
         {
