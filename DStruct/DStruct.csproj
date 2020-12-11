@@ -8,12 +8,13 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Product>DStruct.NET</Product>
     <PackageId>DStruct.NET</PackageId>
-    <Authors>Software Department</Authors>
-    <RepositoryUrl>http://gitlab.incaricotech.local/incaricotech/tools/dstruct.net</RepositoryUrl>
+    <Authors>Stefano Prosperi</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/sephirothx/DStruct.NET</RepositoryUrl>
     <PackageTags>datastructures, data-structures, data structures, defaultdictionary, default-dictionary, default dictionary, binarytree, binary-tree, binary tree, bst, heap, minheap, min-heap, min heap, maxheap, max-heap, max heap, countminsketch, count-min-sketch, count min sketch, bloomfilter, bloom-filter, bloom filter, deque, priorityqueue, priority-queue, priority queue, trie</PackageTags>
     <Description>Advanced data structures for .NET</Description>
-    <Copyright>Copyright (c) 2020 Incaricotech Srl</Copyright>
-    <Version>2.0.1</Version>
+    <Copyright>Copyright (c) 2020 Stefano Prosperi</Copyright>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
