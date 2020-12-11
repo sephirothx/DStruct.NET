@@ -1,6 +1,6 @@
 ﻿namespace DStruct.BinaryTrees
 {
-    public class RedBlackTreeNode<T> : IBinarySearchTreeNode<T>
+    internal class RedBlackTreeNode<T> : IBinarySearchTreeNode<T>
     {
         public RedBlackTreeNode<T> Left;
         public RedBlackTreeNode<T> Right;
@@ -37,7 +37,7 @@
         IBinarySearchTreeNode<T> IBinarySearchTreeNode<T>.Left => Left;
         IBinarySearchTreeNode<T> IBinarySearchTreeNode<T>.Right => Right;
 
-        T IBinarySearchTreeNode<T>.Value => throw new System.NotImplementedException();
+        T IBinarySearchTreeNode<T>.Value => Value;
 
         public RedBlackTreeNode(T value, RedBlackTreeNode<T> parent = null, bool isRed = true, int leftChildren = 0)
         {

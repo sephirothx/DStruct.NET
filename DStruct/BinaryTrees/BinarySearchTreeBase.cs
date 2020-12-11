@@ -5,18 +5,14 @@ using System.Text;
 
 namespace DStruct.BinaryTrees
 {
-    public abstract class BinarySearchTreeBase<TNode, TValue> : IBinarySearchTree<TValue>
-        where TNode : IBinarySearchTreeNode<TValue>
+    public abstract class BinarySearchTreeBase<TValue> : IBinarySearchTree<TValue>
     {
         private readonly IComparer<TValue> _comparer = Comparer<TValue>.Default;
-        protected TNode _root;
 
         /// <summary>
-        /// Gets the element at the specified index.
+        /// Root used for trasverals methods
         /// </summary>
-        /// <param name="index">The index of the element to get from the <see cref="BinarySearchTreeBase{TNode, TValue}"/>.</param>
-        /// <returns>The element at the specified index.</returns>
-        public abstract TValue this[int index] { get; }
+        private protected abstract IBinarySearchTreeNode<TValue> Root { get; }
 
         /// <summary>
         /// Gets the number of elements stored in the <see cref="IBinarySearchTree{TValue}"/>.
@@ -24,22 +20,91 @@ namespace DStruct.BinaryTrees
         public virtual int Count { get; protected set; }
 
         /// <summary>
-        /// Gets the maximum value element stored in the <see cref="BinarySearchTreeBase{TNode, TValue}" />.
+        /// Gets the element at the specified index.
         /// </summary>
-        public abstract TValue Min { get; }
+        /// <param name="index">The index of the element to get from the <see cref="BinarySearchTreeBase{TValue}"/>.</param>
+        /// <returns>The element at the specified index.</returns>
+        public virtual TValue this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= Count)
+                {
+                    throw new IndexOutOfRangeException("Index is outside the bounds of the Binary Search Tree.");
+                }
 
-        /// <summary>
-        /// Gets the minimum value element stored in the <see cref="BinarySearchTreeBase{TNode, TValue}"/>.
-        /// </summary>
-        public abstract TValue Max { get; }
+                var curr = Root;
+                int check = 0;
 
-        /// <summary>Initializes a new instance of <see cref="BinarySearchTreeBase{TNode, TValue}"/> that is empty.</summary>
+                while (true)
+                {
+                    if (check + curr.LeftChildren == index)
+                    {
+                        return curr.Value;
+                    }
+
+                    if (check + curr.LeftChildren > index)
+                    {
+                        curr = curr.Left;
+                    }
+                    else
+                    {
+                        check += curr.LeftChildren + 1;
+                        curr = curr.Right;
+                    }
+                }
+            }
+        }
+
+        /// <summary>Gets the minimum value element stored in the <see cref="BinarySearchTreeBase{TValue}"/>. <code>Complexity: O(LogN)</code></summary>
+        /// <exception cref="InvalidOperationException"><see cref="BinarySearchTreeBase{TValue}"/> is empty.</exception>
+        public virtual TValue Min
+        {
+            get
+            {
+                if (Root == null)
+                {
+                    throw new InvalidOperationException("The Red-Black Tree is empty.");
+                }
+
+                var curr = Root;
+                while (curr.Left != null)
+                {
+                    curr = curr.Left;
+                }
+
+                return curr.Value;
+            }
+        }
+
+        /// <summary>Gets the maximum value element stored in the <see cref="BinarySearchTreeBase{TValue}" />. <code>Complexity: O(LogN)</code></summary>
+        /// <exception cref="InvalidOperationException"><see cref="BinarySearchTreeBase{TValue}"/> is empty.</exception>
+        public virtual TValue Max
+        {
+            get
+            {
+                if (Root == null)
+                {
+                    throw new InvalidOperationException("The Red-Black Tree is empty.");
+                }
+
+                var curr = Root;
+                while (curr.Right != null)
+                {
+                    curr = curr.Right;
+                }
+
+                return curr.Value;
+            }
+        }
+
+        /// <summary>Initializes a new instance of <see cref="BinarySearchTreeBase{TValue}"/> that is empty.</summary>
         public BinarySearchTreeBase()
         {
         }
 
-        /// <summary>Initializes a new instance of <see cref="BinarySearchTreeBase{TNode, TValue}"/> that contains every item from the input collection.</summary>
-        /// <param name="collection">The collection of elements to add to the <see cref="BinarySearchTreeBase{TNode, TValue}"/>.</param>
+        /// <summary>Initializes a new instance of <see cref="BinarySearchTreeBase{TValue}"/> that contains every item from the input collection.</summary>
+        /// <param name="collection">The collection of elements to add to the <see cref="BinarySearchTreeBase{TValue}"/>.</param>
         /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <c>null</c>.</exception>
         public BinarySearchTreeBase(IEnumerable<TValue> collection)
         {
@@ -55,7 +120,7 @@ namespace DStruct.BinaryTrees
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="BinarySearchTreeBase{TNode, TValue}"/> that is empty and uses the specified <see cref="IComparer{TValue}"/>.
+        /// Initializes a new instance of <see cref="BinarySearchTreeBase{TValue}"/> that is empty and uses the specified <see cref="IComparer{TValue}"/>.
         /// </summary>
         /// <param name="comparer"></param>
         public BinarySearchTreeBase(IComparer<TValue> comparer)
@@ -64,21 +129,21 @@ namespace DStruct.BinaryTrees
         }
 
         /// <summary>
-        /// Determines whether the <see cref="BinarySearchTreeBase{TNode, TValue}" /> contains a specific value.
+        /// Determines whether the <see cref="BinarySearchTreeBase{TValue}" /> contains a specific value.
         /// </summary>
-        /// <param name="value">The element to locate in the <see cref="BinarySearchTreeBase{TNode, TValue}"/>.</param>
-        /// <returns><c>true</c> if the <see cref="BinarySearchTreeBase{TNode, TValue}"/> contains <paramref name="value"/>; <c>false</c> otherwise.</returns>
+        /// <param name="value">The element to locate in the <see cref="BinarySearchTreeBase{TValue}"/>.</param>
+        /// <returns><c>true</c> if the <see cref="BinarySearchTreeBase{TValue}"/> contains <paramref name="value"/>; <c>false</c> otherwise.</returns>
         public abstract bool Find(TValue value);
 
         /// <summary>
-        /// Inserts an element into the <see cref="BinarySearchTreeBase{TNode, TValue}" /> and returns its index.
+        /// Inserts an element into the <see cref="BinarySearchTreeBase{TValue}" /> and returns its index.
         /// </summary>
-        /// <param name="value">The element to add to the <see cref="BinarySearchTreeBase{TNode, TValue}"/>.</param>
+        /// <param name="value">The element to add to the <see cref="BinarySearchTreeBase{TValue}"/>.</param>
         /// <returns>The index at which the element was placed.</returns>
         public abstract int Insert(TValue value);
 
         /// <summary>
-        /// Removes one occurrence of a specific element from the <see cref="BinarySearchTreeBase{TNode, TValue}" />.
+        /// Removes one occurrence of a specific element from the <see cref="BinarySearchTreeBase{TValue}" />.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -93,7 +158,7 @@ namespace DStruct.BinaryTrees
         {
             var nodeStack = new Stack<IBinarySearchTreeNode<TValue>>();
 
-            IBinarySearchTreeNode<TValue> currrentNode = _root;
+            IBinarySearchTreeNode<TValue> currrentNode = Root;
 
             while (currrentNode != null || nodeStack.Count > 0)
             {
@@ -116,7 +181,7 @@ namespace DStruct.BinaryTrees
         public virtual IEnumerable<TValue> PreOrderTraverse()
         {
             var nodeQueue = new LinkedList<IBinarySearchTreeNode<TValue>>();
-            nodeQueue.AddLast(_root);
+            nodeQueue.AddLast(Root);
 
             while (nodeQueue.Count > 0)
             {
@@ -138,7 +203,7 @@ namespace DStruct.BinaryTrees
         public virtual IEnumerable<TValue> BreadthFirstSearch()
         {
             var nodeQueue = new Queue<IBinarySearchTreeNode<TValue>>();
-            nodeQueue.Enqueue(_root);
+            nodeQueue.Enqueue(Root);
 
             while (nodeQueue.Count > 0)
             {
@@ -160,7 +225,7 @@ namespace DStruct.BinaryTrees
         {
             var nodeStack = new Stack<IBinarySearchTreeNode<TValue>>();
 
-            IBinarySearchTreeNode<TValue> currrentNode = _root;
+            IBinarySearchTreeNode<TValue> currrentNode = Root;
 
             while (currrentNode != null || nodeStack.Count > 0)
             {

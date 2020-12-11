@@ -8,85 +8,9 @@ namespace DStruct.BinaryTrees
 {
     /// <summary>Represents a node-based, self-balancing <see cref="IBinarySearchTree{T}"/> enhanced to implement an efficient indexer.</summary>
     /// <typeparam name="T">The type of the values stored in the <see cref="AVLTree{T}"/>.</typeparam>
-    public class AVLTree<T> : BinarySearchTreeBase<AVLTreeNode<T>, T>
+    public class AVLTree<T> : BinarySearchTreeBase<T>
     {
-        /// <summary>Gets the minimum value element stored in the <see cref="AVLTree{T}"/>. <code>Complexity: O(LogN)</code></summary>
-        /// <exception cref="InvalidOperationException"><see cref="AVLTree{T}"/> is empty.</exception>
-        public override T Min
-        {
-            get
-            {
-                if (_root == null)
-                {
-                    throw new InvalidOperationException("The AVLTree is empty.");
-                }
-
-                var curr = _root;
-                while (curr.Left != null)
-                {
-                    curr = curr.Left;
-                }
-
-                return curr.Value;
-            }
-        }
-
-        /// <summary>Gets the maximum value element stored in the <see cref="AVLTree{T}" />. <code>Complexity: O(LogN)</code></summary>
-        /// <exception cref="InvalidOperationException"><see cref="AVLTree{T}"/> is empty.</exception>
-        public override T Max
-        {
-            get
-            {
-                if (_root == null)
-                {
-                    throw new InvalidOperationException("The AVLTree is empty.");
-                }
-
-                var curr = _root;
-                while (curr.Right != null)
-                {
-                    curr = curr.Right;
-                }
-
-                return curr.Value;
-            }
-        }
-
-        /// <summary>Gets the element at the specified index. <code>Complexity: O(LogN)</code></summary>
-        /// <param name="index">The index of the element to get from the <see cref="AVLTree{T}"/>.</param>
-        /// <returns>The element at the specified index.</returns>
-        /// <exception cref="IndexOutOfRangeException"><paramref name="index"/> is out of the bounds of the <see cref="AVLTree{T}"/>.</exception>
-        public override T this[int index]
-        {
-            get
-            {
-                if (index < 0 || index >= Count)
-                {
-                    throw new IndexOutOfRangeException("Index is outside the bounds of the AVLTree.");
-                }
-
-                var curr  = _root;
-                int check = 0;
-
-                while (true)
-                {
-                    if (check + curr.LeftChildren == index)
-                    {
-                        return curr.Value;
-                    }
-
-                    if (check + curr.LeftChildren > index)
-                    {
-                        curr = curr.Left;
-                    }
-                    else
-                    {
-                        check += curr.LeftChildren + 1;
-                        curr  =  curr.Right;
-                    }
-                }
-            }
-        }
+        private AVLTreeNode<T> _root;
 
         /// <summary>Initializes a new instance of <see cref="AVLTree{T}"/> that is empty.</summary>
         public AVLTree()
@@ -108,6 +32,8 @@ namespace DStruct.BinaryTrees
             : base(comparer)
         {
         }
+
+        private protected override IBinarySearchTreeNode<T> Root => _root;
 
         /// <summary>Inserts an element into the <see cref="AVLTree{T}" /> and returns its index. <code>Complexity: O(LogN)</code></summary>
         /// <param name="value">The element to add to the <see cref="AVLTree{T}"/>.</param>

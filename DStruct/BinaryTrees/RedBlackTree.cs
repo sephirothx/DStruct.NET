@@ -9,85 +9,9 @@ namespace DStruct.BinaryTrees
 {
     /// <summary>Represents a node-based, self-balancing <see cref="IBinarySearchTree{T}"/> enhanced to implement an efficient indexer.</summary>
     /// <typeparam name="T">The type of the values stored in the <see cref="RedBlackTree{T}"/>.</typeparam>
-    public class RedBlackTree<T> : BinarySearchTreeBase<RedBlackTreeNode<T>, T>
+    public class RedBlackTree<T> : BinarySearchTreeBase<T>
     {
-        /// <summary>Gets the minimum value element stored in the <see cref="RedBlackTree{T}"/>. <code>Complexity: O(LogN)</code></summary>
-        /// <exception cref="InvalidOperationException"><see cref="RedBlackTree{T}"/> is empty.</exception>
-        public override T Min 
-        {
-            get
-            {
-                if (_root == null)
-                {
-                    throw new InvalidOperationException("The Red-Black Tree is empty.");
-                }
-
-                var curr = _root;
-                while (curr.Left != null)
-                {
-                    curr = curr.Left;
-                }
-
-                return curr.Value;
-            }
-        }
-
-        /// <summary>Gets the maximum value element stored in the <see cref="RedBlackTree{T}" />. <code>Complexity: O(LogN)</code></summary>
-        /// <exception cref="InvalidOperationException"><see cref="RedBlackTree{T}"/> is empty.</exception>
-        public override T Max 
-        {
-            get
-            {
-                if (_root == null)
-                {
-                    throw new InvalidOperationException("The Red-Black Tree is empty.");
-                }
-
-                var curr = _root;
-                while (curr.Right != null)
-                {
-                    curr = curr.Right;
-                }
-
-                return curr.Value;
-            }
-        }
-
-        /// <summary>Gets the element at the specified index. <code>Complexity: O(LogN)</code></summary>
-        /// <param name="index">The index of the element to get from the <see cref="RedBlackTree{T}"/>.</param>
-        /// <returns>The element at the specified index.</returns>
-        /// <exception cref="IndexOutOfRangeException"><paramref name="index"/> is out of the bounds of the <see cref="RedBlackTree{T}"/>.</exception>
-        public override T this[int index] 
-        {
-            get
-            {
-                if (index < 0 || index >= Count)
-                {
-                    throw new IndexOutOfRangeException("Index is outside the bounds of the Red-Black Tree.");
-                }
-
-                var curr  = _root;
-                int check = 0;
-
-                while (true)
-                {
-                    if (check + curr.LeftChildren == index)
-                    {
-                        return curr.Value;
-                    }
-
-                    if (check + curr.LeftChildren > index)
-                    {
-                        curr = curr.Left;
-                    }
-                    else
-                    {
-                        check += curr.LeftChildren + 1;
-                        curr  =  curr.Right;
-                    }
-                }
-            }
-        }
+        private RedBlackTreeNode<T> _root;
 
         /// <summary>Initializes a new instance of <see cref="RedBlackTree{T}"/> that is empty.</summary>
         public RedBlackTree()
@@ -101,6 +25,8 @@ namespace DStruct.BinaryTrees
             : base(collection)
         {
         }
+
+        private protected override IBinarySearchTreeNode<T> Root => _root;
 
         /// <summary>Initializes a new instance of <see cref="RedBlackTree{T}"/> that is empty and uses the specified <see cref="IComparer{T}"/>.</summary>
         /// <param name="comparer">The <see cref="IComparer{T}"/> that will be used for making comparisons.</param>

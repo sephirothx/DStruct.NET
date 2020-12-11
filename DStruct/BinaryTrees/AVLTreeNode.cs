@@ -2,7 +2,7 @@
 
 namespace DStruct.BinaryTrees
 {
-    public class AVLTreeNode<T> : IBinarySearchTreeNode<T>
+    internal class AVLTreeNode<T> : IBinarySearchTreeNode<T>
     {
         public AVLTreeNode<T> Left;
         public AVLTreeNode<T> Right;
