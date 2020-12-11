@@ -6,7 +6,7 @@ using System.Text;
 namespace DStruct.BinaryTrees
 {
     public abstract class BinarySearchTreeBase<TNode, TValue> : IBinarySearchTree<TValue>
-        where TNode : IBinarySearchTreeNodeBase<TValue>
+        where TNode : IBinarySearchTreeNode<TValue>
     {
         private readonly IComparer<TValue> _comparer = Comparer<TValue>.Default;
         protected TNode _root;
@@ -87,13 +87,13 @@ namespace DStruct.BinaryTrees
         public virtual IEnumerator<TValue> GetEnumerator() => InOrderTraverse().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTreeNodeBase{TValue}" /> in-order. <code>Complexity: O(N)</code></summary>
+        /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTreeNode{TValue}" /> in-order. <code>Complexity: O(N)</code></summary>
         /// <returns>List of in-order elements.</returns>
         public virtual IEnumerable<TValue> InOrderTraverse()
         {
-            var nodeStack = new Stack<IBinarySearchTreeNodeBase<TValue>>();
+            var nodeStack = new Stack<IBinarySearchTreeNode<TValue>>();
 
-            IBinarySearchTreeNodeBase<TValue> currrentNode = _root;
+            IBinarySearchTreeNode<TValue> currrentNode = _root;
 
             while (currrentNode != null || nodeStack.Count > 0)
             {
@@ -111,11 +111,11 @@ namespace DStruct.BinaryTrees
             }
         }
 
-        /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTreeNodeBase{TValue}" /> pre-order. <code>Complexity: O(N)</code></summary>
+        /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTreeNode{TValue}" /> pre-order. <code>Complexity: O(N)</code></summary>
         /// <returns>List of pre-order elements.</returns>
         public virtual IEnumerable<TValue> PreOrderTraverse()
         {
-            var nodeQueue = new LinkedList<IBinarySearchTreeNodeBase<TValue>>();
+            var nodeQueue = new LinkedList<IBinarySearchTreeNode<TValue>>();
             nodeQueue.AddLast(_root);
 
             while (nodeQueue.Count > 0)
@@ -133,11 +133,11 @@ namespace DStruct.BinaryTrees
             }
         }
 
-        /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTreeNodeBase{TValue}" /> pre-order. <code>Complexity: O(N)</code></summary>
+        /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTreeNode{TValue}" /> pre-order. <code>Complexity: O(N)</code></summary>
         /// <returns>List of breadth-first-search elements.</returns>
         public virtual IEnumerable<TValue> BreadthFirstSearch()
         {
-            var nodeQueue = new Queue<IBinarySearchTreeNodeBase<TValue>>();
+            var nodeQueue = new Queue<IBinarySearchTreeNode<TValue>>();
             nodeQueue.Enqueue(_root);
 
             while (nodeQueue.Count > 0)
@@ -154,13 +154,13 @@ namespace DStruct.BinaryTrees
             }
         }
 
-        /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTreeNodeBase{TValue}" /> post-order. <code>Complexity: O(N)</code></summary>
+        /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTreeNode{TValue}" /> post-order. <code>Complexity: O(N)</code></summary>
         /// <returns>List of post-order elements.</returns>
         public virtual IEnumerable<TValue> PostOrderTraverse()
         {
-            var nodeStack = new Stack<IBinarySearchTreeNodeBase<TValue>>();
+            var nodeStack = new Stack<IBinarySearchTreeNode<TValue>>();
 
-            IBinarySearchTreeNodeBase<TValue> currrentNode = _root;
+            IBinarySearchTreeNode<TValue> currrentNode = _root;
 
             while (currrentNode != null || nodeStack.Count > 0)
             {

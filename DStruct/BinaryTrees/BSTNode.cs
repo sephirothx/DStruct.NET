@@ -1,6 +1,6 @@
 ﻿namespace DStruct.BinaryTrees
 {
-    public class BSTNode<T> : IBinarySearchTreeNodeBase<T>
+    public class BSTNode<T> : IBinarySearchTreeNode<T>
     {
         public BSTNode<T> Left;
         public BSTNode<T> Right;
@@ -8,8 +8,8 @@
         public T Value { get; set; }
         public int LeftChildren { get; set; }
 
-        IBinarySearchTreeNodeBase<T> IBinarySearchTreeNodeBase<T>.Left => Left;
-        IBinarySearchTreeNodeBase<T> IBinarySearchTreeNodeBase<T>.Right => Right;
+        IBinarySearchTreeNode<T> IBinarySearchTreeNode<T>.Left => Left;
+        IBinarySearchTreeNode<T> IBinarySearchTreeNode<T>.Right => Right;
 
         public BSTNode()
         {

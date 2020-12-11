@@ -4,10 +4,10 @@ using System.Text;
 
 namespace DStruct.BinaryTrees
 {
-    public interface IBinarySearchTreeNodeBase<TValue>
+    public interface IBinarySearchTreeNode<TValue>
     {
-        IBinarySearchTreeNodeBase<TValue> Left { get; }
-        IBinarySearchTreeNodeBase<TValue> Right { get; }
+        IBinarySearchTreeNode<TValue> Left { get; }
+        IBinarySearchTreeNode<TValue> Right { get; }
 
         TValue Value { get; }
     }
