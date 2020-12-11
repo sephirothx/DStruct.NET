@@ -1,24 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable RedundantAssignment
-#pragma warning disable IDE0059
 
 namespace DStruct.BinaryTrees
 {
-    /// <summary>Represents a node-based, self-balancing <see cref="IBinarySearchTree{T}"/> enhanced to implement an efficient indexer.</summary>
+    /// <summary>
+    /// Represents a node-based, self-balancing <see cref="IBinarySearchTree{T}"/> enhanced to implement an efficient indexer.
+    /// </summary>
     /// <typeparam name="T">The type of the values stored in the <see cref="RedBlackTree{T}"/>.</typeparam>
     public class RedBlackTree<T> : BinarySearchTreeBase<T>
     {
         private RedBlackTreeNode<T> _root;
 
-        /// <summary>Initializes a new instance of <see cref="RedBlackTree{T}"/> that is empty.</summary>
+        private protected override IBinarySearchTreeNode<T> Root => _root;
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="RedBlackTree{T}"/> that is empty.
+        /// </summary>
         public RedBlackTree()
         {
         }
 
-        /// <summary>Initializes a new instance of <see cref="RedBlackTree{T}"/> that contains every item from the input collection.</summary>
+        /// <summary>
+        /// Initializes a new instance of <see cref="RedBlackTree{T}"/> that contains every item from the input collection.
+        /// </summary>
         /// <param name="collection">The collection of elements to add to the <see cref="RedBlackTree{T}"/>.</param>
         /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <c>null</c>.</exception>
         public RedBlackTree(IEnumerable<T> collection)
@@ -26,9 +32,9 @@ namespace DStruct.BinaryTrees
         {
         }
 
-        private protected override IBinarySearchTreeNode<T> Root => _root;
-
-        /// <summary>Initializes a new instance of <see cref="RedBlackTree{T}"/> that is empty and uses the specified <see cref="IComparer{T}"/>.</summary>
+        /// <summary>
+        /// Initializes a new instance of <see cref="RedBlackTree{T}"/> that is empty and uses the specified <see cref="IComparer{T}"/>.
+        /// </summary>
         /// <param name="comparer">The <see cref="IComparer{T}"/> that will be used for making comparisons.</param>
         /// <exception cref="ArgumentNullException"><paramref name="comparer"/> is <c>null</c>.</exception>
         public RedBlackTree(IComparer<T> comparer)
@@ -36,10 +42,12 @@ namespace DStruct.BinaryTrees
         {
         }
 
-        /// <summary>Inserts an element into the <see cref="RedBlackTree{T}" /> and returns its index. <code>Complexity: O(LogN)</code></summary>
+        /// <summary>
+        /// Inserts an element into the <see cref="RedBlackTree{T}" /> and returns its index.
+        /// <code>Complexity: O(LogN)</code>
+        /// </summary>
         /// <param name="value">The element to add to the <see cref="RedBlackTree{T}"/>.</param>
         /// <returns>The index at which the element was placed.</returns>
-        [SuppressMessage("ReSharper", "TooWideLocalVariableScope")]
         public override int Insert(T value)
         {
             RedBlackTreeNode<T> parent = null;
@@ -113,7 +121,10 @@ namespace DStruct.BinaryTrees
             return position;
         }
 
-        /// <summary>Determines whether the <see cref="RedBlackTree{T}" /> contains a specific value. <code>Complexity: O(LogN)</code></summary>
+        /// <summary>
+        /// Determines whether the <see cref="RedBlackTree{T}" /> contains a specific value.
+        /// <code>Complexity: O(LogN)</code>
+        /// </summary>
         /// <param name="value">The element to locate in the <see cref="RedBlackTree{T}"/>.</param>
         /// <returns><c>true</c> if the <see cref="RedBlackTree{T}"/> contains <paramref name="value"/>; <c>false</c> otherwise.</returns>
         public override bool Find(T value)
@@ -139,7 +150,10 @@ namespace DStruct.BinaryTrees
             return false;
         }
 
-        /// <summary>Removes one occurrence of a specific element from the <see cref="RedBlackTree{T}" />. <code>Complexity: O(LogN)</code></summary>
+        /// <summary>
+        /// Removes one occurrence of a specific element from the <see cref="RedBlackTree{T}" />.
+        /// <code>Complexity: O(LogN)</code>
+        /// </summary>
         /// <param name="value">The element to remove from the <see cref="RedBlackTree{T}"/>.</param>
         /// <returns><c>true</c> if the element was successfully removed from the <see cref="RedBlackTree{T}"/>; <c>false</c> otherwise.</returns>
         public override bool Remove(T value)

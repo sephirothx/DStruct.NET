@@ -1,12 +1,12 @@
 ﻿namespace DStruct.BinaryTrees
 {
-    internal class RedBlackTreeNode<T> : IBinarySearchTreeNode<T>
+    class RedBlackTreeNode<T> : IBinarySearchTreeNode<T>
     {
+        public T Value;
+        
         public RedBlackTreeNode<T> Left;
         public RedBlackTreeNode<T> Right;
         public RedBlackTreeNode<T> Parent;
-
-        public T Value;
 
         // The most significant bit represents the color:
         // 1: red

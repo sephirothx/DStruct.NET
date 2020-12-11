@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DStruct.BinaryTrees
+﻿namespace DStruct.BinaryTrees
 {
-    internal interface IBinarySearchTreeNode<TValue>
+    interface IBinarySearchTreeNode<out T>
     {
-        IBinarySearchTreeNode<TValue> Left { get; }
-        IBinarySearchTreeNode<TValue> Right { get; }
+        T Value { get; }
 
-        TValue Value { get; }
+        IBinarySearchTreeNode<T> Left  { get; }
+        IBinarySearchTreeNode<T> Right { get; }
+
         int LeftChildren { get; }
     }
 }

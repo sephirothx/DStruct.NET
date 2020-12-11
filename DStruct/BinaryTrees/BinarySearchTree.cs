@@ -5,18 +5,26 @@ using System.Collections.Generic;
 
 namespace DStruct.BinaryTrees
 {
-    /// <summary>Represents a node-based, non self-balancing <see cref="IBinarySearchTree{T}" /> enhanced to implement an efficient indexer.</summary>
+    /// <summary>
+    /// Represents a node-based, non self-balancing <see cref="IBinarySearchTree{T}" /> enhanced to implement an efficient indexer.
+    /// </summary>
     /// <typeparam name="T">The type of the values stored in the <see cref="BinarySearchTree{T}"/>.</typeparam>
     public class BinarySearchTree<T> : BinarySearchTreeBase<T>
     {
         private BSTNode<T> _root;
 
-        /// <summary>Initializes a new instance of <see cref="BinarySearchTree{T}"/> that is empty.</summary>
+        private protected override IBinarySearchTreeNode<T> Root => _root;
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="BinarySearchTree{T}"/> that is empty.
+        /// </summary>
         public BinarySearchTree()
         {
         }
 
-        /// <summary>Initializes a new instance of <see cref="BinarySearchTree{T}"/> that contains every item from the input collection.</summary>
+        /// <summary>
+        /// Initializes a new instance of <see cref="BinarySearchTree{T}"/> that contains every item from the input collection.
+        /// </summary>
         /// <param name="collection">The collection of elements to add to the <see cref="BinarySearchTree{T}"/>.</param>
         /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <c>null</c>.</exception>
         public BinarySearchTree(IEnumerable<T> collection)
@@ -24,7 +32,9 @@ namespace DStruct.BinaryTrees
         {
         }
 
-        /// <summary>Initializes a new instance of <see cref="BinarySearchTree{T}"/> that is empty and uses the specified <see cref="IComparer{T}"/>.</summary>
+        /// <summary>
+        /// Initializes a new instance of <see cref="BinarySearchTree{T}"/> that is empty and uses the specified <see cref="IComparer{T}"/>.
+        /// </summary>
         /// <param name="comparer">The <see cref="IComparer{T}"/> that will be used for making comparisons.</param>
         /// <exception cref="ArgumentNullException"><paramref name="comparer"/> is <c>null</c>.</exception>
         public BinarySearchTree(IComparer<T> comparer)
@@ -32,9 +42,10 @@ namespace DStruct.BinaryTrees
         {
         }
 
-        private protected override IBinarySearchTreeNode<T> Root => _root;
-
-        /// <summary>Inserts an element into the <see cref="BinarySearchTree{T}" /> and returns its index. <code>Complexity: avg O(LogN), worst O(N)</code></summary>
+        /// <summary>
+        /// Inserts an element into the <see cref="BinarySearchTree{T}" /> and returns its index.
+        /// <code>Complexity: avg O(LogN), worst O(N)</code>
+        /// </summary>
         /// <param name="value">The element to add to the <see cref="BinarySearchTree{T}"/>.</param>
         /// <returns>The index at which the element was placed.</returns>
         public override int Insert(T value)
@@ -63,7 +74,10 @@ namespace DStruct.BinaryTrees
             return position;
         }
 
-        /// <summary>Determines whether the <see cref="BinarySearchTree{T}" /> contains a specific value. <code>Complexity: avg O(LogN), worst O(N)</code></summary>
+        /// <summary>
+        /// Determines whether the <see cref="BinarySearchTree{T}" /> contains a specific value.
+        /// <code>Complexity: avg O(LogN), worst O(N)</code>
+        /// </summary>
         /// <param name="value">The element to locate in the <see cref="BinarySearchTree{T}"/>.</param>
         /// <returns><c>true</c> if the <see cref="BinarySearchTree{T}"/> contains <paramref name="value"/>; <c>false</c> otherwise.</returns>
         public override bool Find(T value)
@@ -89,7 +103,10 @@ namespace DStruct.BinaryTrees
             return false;
         }
 
-        /// <summary>Removes one occurrence of a specific element from the <see cref="BinarySearchTree{T}"/>. <code>Complexity: avg O(LogN), worst O(N)</code></summary>
+        /// <summary>
+        /// Removes one occurrence of a specific element from the <see cref="BinarySearchTree{T}"/>.
+        /// <code>Complexity: avg O(LogN), worst O(N)</code>
+        /// </summary>
         /// <param name="value">The element to remove from the <see cref="BinarySearchTree{T}"/>.</param>
         /// <returns><c>true</c> if the element was successfully removed from the <see cref="BinarySearchTree{T}"/>; <c>false</c> otherwise.</returns>
         public override bool Remove(T value)
