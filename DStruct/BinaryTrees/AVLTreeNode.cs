@@ -2,12 +2,13 @@
 
 namespace DStruct.BinaryTrees
 {
-    class AVLTreeNode<T>
+    internal class AVLTreeNode<T> : IBinarySearchTreeNode<T>
     {
         public AVLTreeNode<T> Left;
         public AVLTreeNode<T> Right;
 
         public T Value { get; set; }
+
         public int LeftChildren { get; set; }
         public int Height { get; set; }
 
@@ -21,6 +22,9 @@ namespace DStruct.BinaryTrees
                 return rightHeight - leftHeight;
             }
         }
+
+        IBinarySearchTreeNode<T> IBinarySearchTreeNode<T>.Left => Left;
+        IBinarySearchTreeNode<T> IBinarySearchTreeNode<T>.Right => Right;
 
         public AVLTreeNode(T value, int height = 1, int leftChildren = 0)
         {

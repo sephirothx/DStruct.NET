@@ -1,6 +1,6 @@
 ﻿namespace DStruct.BinaryTrees
 {
-    class RedBlackTreeNode<T>
+    internal class RedBlackTreeNode<T> : IBinarySearchTreeNode<T>
     {
         public RedBlackTreeNode<T> Left;
         public RedBlackTreeNode<T> Right;
@@ -33,6 +33,11 @@
         public RedBlackTreeNode<T> InnerChild => IsLeftChild ? Right : Left;
         public RedBlackTreeNode<T> Sibling => IsLeftChild ? Parent?.Right : Parent?.Left;
         public RedBlackTreeNode<T> GrandParent => Parent?.Parent;
+
+        IBinarySearchTreeNode<T> IBinarySearchTreeNode<T>.Left => Left;
+        IBinarySearchTreeNode<T> IBinarySearchTreeNode<T>.Right => Right;
+
+        T IBinarySearchTreeNode<T>.Value => Value;
 
         public RedBlackTreeNode(T value, RedBlackTreeNode<T> parent = null, bool isRed = true, int leftChildren = 0)
         {

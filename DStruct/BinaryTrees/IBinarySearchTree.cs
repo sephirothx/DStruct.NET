@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DStruct.BinaryTrees
 {
     /// <summary>Represents a Binary Tree in which the elements are sorted in order so that operations can use the principle of Binary Search.</summary>
     /// <typeparam name="T">The type of the values stored in the tree.</typeparam>
-    public interface IBinarySearchTree<T>
+    public interface IBinarySearchTree<T> : IEnumerable<T>
     {
         /// <summary>Gets the number of elements stored in the <see cref="IBinarySearchTree{T}"/>.</summary>
         int Count { get; }
@@ -37,14 +38,14 @@ namespace DStruct.BinaryTrees
 
         /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTree{T}"/> in-order.</summary>
         /// <returns>List of in-order elements.</returns>
-        T[] InOrderTraverse();
+        IEnumerable<T> InOrderTraverse();
 
         /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTree{T}"/> pre-order.</summary>
         /// <returns>List of pre-order elements.</returns>
-        T[] PreOrderTraverse();
-        
+        IEnumerable<T> PreOrderTraverse();
+
         /// <summary>Returns the list of the elements stored in the <see cref="IBinarySearchTree{T}"/> post-order.</summary>
         /// <returns>List of post-order elements.</returns>
-        T[] PostOrderTraverse();
+        IEnumerable<T> PostOrderTraverse();
     }
 }
