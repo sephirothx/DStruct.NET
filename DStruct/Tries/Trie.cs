@@ -106,7 +106,7 @@ namespace DStruct.Tries
                 Count--;
             }
 
-            return !ret;
+            return ret;
         }
 
         /// <summary>Removes the elements of the specified collection from the <see cref="Trie"/>. <code>Complexity: O(N*L)</code></summary>
